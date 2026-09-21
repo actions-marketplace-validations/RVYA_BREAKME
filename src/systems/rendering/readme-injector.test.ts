@@ -16,14 +16,14 @@ describe("README Injector", () => {
 	})
 
 	it("renders unlockables with symbols and hover tooltips", () => {
-		const html = renderUnlockablesHtml(["Test Collectible #1", "Test Collectible #2"])
-		assert.ok(html.includes("📦"))
-		assert.ok(html.includes("💎"))
-		assert.ok(html.includes('title="Test Collectible #1 (Common) — Let\'s see if everything works."'))
-		assert.ok(html.includes('title="Test Collectible #2 (Common) — Let\'s see if everything *extra* works."'))
+		const html = renderUnlockablesHtml(["🦆 Rubber Duck with a PhD", "🐱 Cat Sitting on Keyboard"])
+		assert.ok(html.includes("🦆"))
+		assert.ok(html.includes("🐱"))
+		assert.ok(html.includes('title="🦆 Rubber Duck with a PhD (Common)"'))
+		assert.ok(html.includes('title="🐱 Cat Sitting on Keyboard (Common)"'))
 	})
 
-	it("generates side-by-side section with stats and board image", () => {
+	it("generates column section with stats on top, board in center, and collectibles on bottom", () => {
 		const state = createInitialGameState({ username: "octocat" })
 		state.player.progress.chunkIndex = 2
 		state.player.progress.tileIndex = 14
@@ -34,13 +34,26 @@ describe("README Injector", () => {
 		assert.ok(section.startsWith(START_MARKER))
 		assert.ok(section.endsWith(END_MARKER))
 		assert.ok(section.includes("## BREAKME.md"))
-		assert.ok(section.includes('<div align="center" style="width: 100%;">'))
+		assert.ok(section.includes('<div align="center">'))
 		assert.ok(
-			section.includes('<table align="center" width="100%" style="width: 100%; table-layout: fixed;">'),
+			section.includes('<table align="center" width="640" style="width: 100%; max-width: 640px;">'),
 		)
-		assert.ok(section.includes("UNLOCKED: KEEP BREAKING."))
-		assert.ok(section.includes("<p>CHUNK#2 • TILE#14 • 🔥STREAK#5 • BROKEN#042</p>"))
-		assert.ok(section.includes('src="./custom-board.svg"'))
+		assert.ok(section.includes('<td align="center" width="25%">⛰️<i>CHUNK</i><b>#002</b></td>'))
+		assert.ok(section.includes('<td align="center" width="25%">🪨<i>TILE</i><b>#014</b></td>'))
+		assert.ok(section.includes('<td align="center" width="25%">🔥<i>STREAK</i><b>#005</b></td>'))
+		assert.ok(section.includes('<td align="center" width="25%">⛏️<i>BROKEN</i><b>#042</b></td>'))
+		assert.ok(section.includes('src="./custom-board.svg" width="640"'))
+		assert.ok(section.includes("COLLECTED (000/250): KEEP BREAKING."))
+	})
+
+	it("renders collected count when player owns collectibles", () => {
+		const state = createInitialGameState({ username: "octocat" })
+		state.player.inventory.collectibles = ["🦆 Rubber Duck with a PhD", "🐱 Cat Sitting on Keyboard"]
+
+		const section = generateReadmeSection(state, "./custom-board.svg")
+		assert.ok(section.includes("COLLECTED (002/250):"))
+		assert.ok(section.includes("🦆"))
+		assert.ok(section.includes("🐱"))
 	})
 
 	it("injects generated section between markers in README", () => {
@@ -57,8 +70,8 @@ ${END_MARKER}
 		assert.ok(result.includes("# My Profile"))
 		assert.ok(result.includes("## About Me"))
 		assert.ok(!result.includes("old content"))
-		assert.ok(result.includes("KEEP BREAKING."))
-		assert.ok(result.includes("<p>CHUNK#0 • TILE#0 • 🔥STREAK#0 • BROKEN#000</p>"))
+		assert.ok(result.includes("COLLECTED (000/250): KEEP BREAKING."))
+		assert.ok(result.includes('<td align="center" width="25%">⛰️<i>CHUNK</i><b>#000</b></td>'))
 	})
 
 	it("returns original content unchanged if markers are missing", () => {

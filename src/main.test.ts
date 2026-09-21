@@ -11,7 +11,7 @@ describe("Main CLI Runner", () => {
 
 	beforeEach(async () => {
 		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "breakme-main-test-"))
-		process.env = { ...originalEnv }
+		process.env = { ...originalEnv, README_PATH: path.join(tempDir, "README.md") }
 		process.exitCode = undefined
 	})
 
@@ -78,9 +78,9 @@ describe("Main CLI Runner", () => {
 
 		const updatedReadme = await fs.readFile(readmePath, "utf-8")
 		assert.ok(updatedReadme.includes("## BREAKME.md"))
-		assert.ok(updatedReadme.includes("UNLOCKED: KEEP BREAKING."))
-		assert.ok(updatedReadme.includes("<p>CHUNK#0 • TILE#0 • 🔥STREAK#0 • BROKEN#000</p>"))
-		assert.ok(updatedReadme.includes('src="./board.svg"'))
+		assert.ok(updatedReadme.includes("COLLECTED (000/250): KEEP BREAKING."))
+		assert.ok(updatedReadme.includes("⛰️<i>CHUNK</i><b>#000</b>"))
+		assert.ok(updatedReadme.includes('src="./board.svg" width="640"'))
 	})
 })
 

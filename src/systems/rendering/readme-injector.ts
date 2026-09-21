@@ -15,7 +15,7 @@ export function renderUnlockablesHtml(collectibles: string[]): string {
 			return `<span>${name}</span>`
 		}
 		const rarityLabel = def.rarity.charAt(0).toUpperCase() + def.rarity.slice(1)
-		const title = `${name} (${rarityLabel}) — ${def.description}`
+		const title = `${name} (${rarityLabel})`
 		return `<span title="${title}">${def.symbol}</span>`
 	})
 
@@ -23,29 +23,39 @@ export function renderUnlockablesHtml(collectibles: string[]): string {
 }
 
 export function generateReadmeSection(state: GameState, svgPath = "./BREAKME-board.svg"): string {
-	const chunkIndex = state.player.progress.chunkIndex
-	const tileIndex = state.player.progress.tileIndex
-	const currentStreak = state.player.activity.currentStreak
+	const chunkIndex = String(state.player.progress.chunkIndex).padStart(3, "0")
+	const tileIndex = String(state.player.progress.tileIndex).padStart(3, "0")
+	const currentStreak = String(state.player.activity.currentStreak).padStart(3, "0")
 	const totalBroken = String(state.player.progress.totalTilesBroken).padStart(3, "0")
+	const totalCollectibles = Object.keys(COLLECTIBLES).length
+	const collectedCount = state.player.inventory.collectibles.length
+	const collectedFormatted = String(collectedCount).padStart(3, "0")
+	const totalFormatted = String(totalCollectibles).padStart(3, "0")
 	const unlockablesHtml = renderUnlockablesHtml(state.player.inventory.collectibles)
 
 	return `${START_MARKER}
-<div align="center" style="width: 100%;">
+<div align="center">
 
 ## BREAKME.md
 
-<table align="center" width="100%" style="width: 100%; table-layout: fixed;">
+<table align="center" width="640" style="width: 100%; max-width: 640px;">
   <tr>
-    <td width="50%" align="left" valign="middle">
-      UNLOCKED: ${unlockablesHtml}
+    <td align="center" width="25%">⛰️<i>CHUNK</i><b>#${chunkIndex}</b></td>
+    <td align="center" width="25%">🪨<i>TILE</i><b>#${tileIndex}</b></td>
+    <td align="center" width="25%">🔥<i>STREAK</i><b>#${currentStreak}</b></td>
+    <td align="center" width="25%">⛏️<i>BROKEN</i><b>#${totalBroken}</b></td>
+  </tr>
+  <tr>
+    <td colspan="4" align="center">
+      <img src="${svgPath}" width="640" alt="BREAKME.md Board" />
     </td>
-    <td width="50%" align="center" valign="middle">
-      <img src="${svgPath}" width="480" alt="BREAKME.md Board" />
+  </tr>
+  <tr>
+    <td colspan="4" align="center">
+      COLLECTED (${collectedFormatted}/${totalFormatted}): ${unlockablesHtml}
     </td>
   </tr>
 </table>
-
-<p>CHUNK#${chunkIndex} • TILE#${tileIndex} • 🔥STREAK#${currentStreak} • BROKEN#${totalBroken}</p>
 
 </div>
 ${END_MARKER}`
