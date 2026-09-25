@@ -1,5 +1,5 @@
 {
-  "hash": "5dbeef8e59be66f457ecc50a79b61db614326c501ed9825a4f5b26a87cafa839",
+  "hash": "9d10355850531cfd2574e48b03916d580c6b34efd09d0d12f33f7e2d78df85a3",
   "player": {
     "identity": {
       "username": "RVYA",
@@ -8,8 +8,8 @@
     },
     "progress": {
       "chunkIndex": 2,
-      "tileIndex": 39,
-      "totalTilesBroken": 231
+      "tileIndex": 59,
+      "totalTilesBroken": 251
     },
     "activity": {
       "currentStreak": 7,
@@ -285,134 +285,134 @@
       {
         "index": 39,
         "shape": "Biscuit",
-        "currentHp": 3.6,
+        "currentHp": 0,
         "maxHp": 4
       },
       {
         "index": 40,
         "shape": "Blob",
-        "currentHp": 5,
+        "currentHp": 0,
         "maxHp": 5
       },
       {
         "index": 41,
         "shape": "Bread",
         "variant": "Terracotta",
-        "currentHp": 7,
+        "currentHp": 0,
         "maxHp": 7
       },
       {
         "index": 42,
         "shape": "Chipped",
-        "currentHp": 3,
+        "currentHp": 0,
         "maxHp": 3
       },
       {
         "index": 43,
         "shape": "Water",
-        "currentHp": 7,
+        "currentHp": 0,
         "maxHp": 7
       },
       {
         "index": 44,
         "shape": "Blob",
-        "currentHp": 5,
+        "currentHp": 0,
         "maxHp": 5
       },
       {
         "index": 45,
         "shape": "Biscuit",
-        "currentHp": 4,
+        "currentHp": 0,
         "maxHp": 4
       },
       {
         "index": 46,
         "shape": "Water",
         "variant": "Terracotta",
-        "currentHp": 9,
+        "currentHp": 0,
         "maxHp": 9
       },
       {
         "index": 47,
         "shape": "Base",
-        "currentHp": 4,
+        "currentHp": 0,
         "maxHp": 4
       },
       {
         "index": 48,
         "shape": "Donut",
-        "currentHp": 5,
+        "currentHp": 0,
         "maxHp": 5
       },
       {
         "index": 49,
         "shape": "Water",
         "variant": "Camo",
-        "currentHp": 10,
+        "currentHp": 0,
         "maxHp": 10
       },
       {
         "index": 50,
         "shape": "Chipped",
-        "currentHp": 3,
+        "currentHp": 0,
         "maxHp": 3
       },
       {
         "index": 51,
         "shape": "Bread",
         "effect": "Blessed",
-        "currentHp": 9,
+        "currentHp": 0,
         "maxHp": 9
       },
       {
         "index": 52,
         "shape": "Tree",
         "variant": "PolkaDot",
-        "currentHp": 10,
+        "currentHp": 0,
         "maxHp": 10
       },
       {
         "index": 53,
         "shape": "Biscuit",
-        "currentHp": 4,
+        "currentHp": 0,
         "maxHp": 4
       },
       {
         "index": 54,
         "shape": "Blob",
-        "currentHp": 5,
+        "currentHp": 0,
         "maxHp": 5
       },
       {
         "index": 55,
         "shape": "Biscuit",
-        "currentHp": 4,
+        "currentHp": 0,
         "maxHp": 4
       },
       {
         "index": 56,
         "shape": "Blob",
-        "currentHp": 5,
+        "currentHp": 0,
         "maxHp": 5
       },
       {
         "index": 57,
         "shape": "Tree",
         "variant": "Moss",
-        "currentHp": 10,
+        "currentHp": 0,
         "maxHp": 10
       },
       {
         "index": 58,
         "shape": "Chipped",
         "effect": "Brittle",
-        "currentHp": 2,
+        "currentHp": 0,
         "maxHp": 2
       },
       {
         "index": 59,
         "shape": "Chipped",
-        "currentHp": 3,
+        "currentHp": 2.4,
         "maxHp": 3
       },
       {
